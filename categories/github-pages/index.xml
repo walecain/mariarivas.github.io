@@ -3,7 +3,7 @@
   <channel>
       <title>Github Pages on Maria Rivas </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://localhost:1313/categories/github-pages/</link>
+    <link>http://mariarivas.me/categories/github-pages/</link>
     <language>en-us</language>
     <author>Maria Rivas</author>
     
@@ -11,10 +11,10 @@
     
     <item>
       <title>Hello HuGO - Create a Hugo Blog on GitHub Pages via Git</title>
-      <link>http://localhost:1313/post/Hugo/</link>
+      <link>http://mariarivas.me/post/Hugo/</link>
       <pubDate>Mon, 29 Jun 2015 18:28:53 CEST</pubDate>
       <author>Maria Rivas</author>
-      <guid>http://localhost:1313/post/Hugo/</guid>
+      <guid>http://mariarivas.me/post/Hugo/</guid>
       <description>
 
 &lt;p&gt;After a long time of debating (read: procrastinating) about creating a blog, here it is. Its purpose is dual – first, document my adventures in Go (among other tools of the trade) as a way to reinforce concepts I am learning and implementing into projects. Secondly, it is a great platform to share my perspective on miscellaneous subjects, in which (I hope) can spark meaningful discussion from all viewpoints.&lt;/p&gt;
