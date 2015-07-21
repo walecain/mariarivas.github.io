@@ -4,7 +4,7 @@
 http_path = "/"
 css_dir = "themes/greyshade/static/css"
 sass_dir = "themes/greyshade/static/sass"
-#images_dir = "themes/greyshade/static/images"
+images_dir = "themes/greyshade/static/images"
 javascripts_dir = "themes/greyshade/static/js"
 
 # You can select your preferred output style here (can be overridden via the command line):
