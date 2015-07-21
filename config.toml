@@ -1,0 +1,46 @@
+baseurl = "http://mariarivas.me/"
+languageCode = "en-us"
+title = "Maria Rivas"
+theme = "greyshade"
+
+[author]
+name = "Maria Rivas"
+# email will use for gravatar
+email = "mariarivas@me.com"
+
+[taxonomies]
+category = "categories"
+
+[params]
+# site description, will show under navigation
+description = ""
+
+# social links
+facebook_user = ""
+googleplus_user = ""
+twitter_user = "iammariarivas"
+github_user = "mariarivas"
+coderwall_user = ""
+stackoverflow_user = ""
+stackoverflow_user_id = ""
+linkedin_user = "rivasmaria1"
+pinterest_user = ""
+delicious_user = ""
+pinboard_user = ""
+quora_user = ""
+instagram_user = ""
+behance_user = ""
+douban_user = ""
+
+# share links
+facebook_like = true
+twitter_tweet_button = true
+google_plus_one = "true"
+addthis_profile_id = ""
+
+# Disqus Comments
+disqus_short_name = ""
+disqus_show_comment_count = false
+
+# google analytics
+google_analytics_tracking_id = ""
