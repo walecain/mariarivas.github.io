@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+
+<html lang="en-us">
+
+<head>
+	<meta charset="utf-8">
+	<title>Hello HuGO - Create a Hugo Blog on GitHub Pages via Git - Maria Rivas</title>
+	<meta name="author" content="map[name:Maria Rivas email:mariarivas@me.com]">
+
+	
+	
+	<meta name="description" content="">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link rel="canonical" href="http://mariarivas.me/post/Hugo/">
+	<link href="http://mariarivas.me//favicon.png" rel="shortcut icon">
+	<link href="http://mariarivas.me//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://mariarivas.me//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Muli:300' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Enriqueta' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	
+	<script src="http://mariarivas.me//js/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5('mariarivas@me.com') + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+	
+	
+</div>
+<h1>Maria Rivas</h1>
+<div class="subtitle">
+Software developer <b><big>|</big></b> NYC
+<br><br>
+Stand firm for what you believe in, until and unless logic and experience prove you wrong.
+</div>
+<nav id="main-nav"><ul class="main">
+    <li><a href="/">Blog</a></li>
+    
+    <li><a href="/post/">Archives</a></li>
+</ul>
+
+<section class="aboutme">
+  <p>
+    
+  </p>
+</section>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+			<a class="email" href='mailto:mariarivas@me.com' title="Email">Email</a>
+		
+		
+		
+		
+			<a class="twitter" href='http://twitter.com/iammariarivas' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/mariarivas' title="GitHub">GitHub</a>
+		
+		
+		
+		
+			<a class="linkedin" href='http://www.linkedin.com/in/rivasmaria1' title="LinkedIn">LinkedIn</a>
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+	</div>
+</nav>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="title" itemprop="name">Hello HuGO - Create a Hugo Blog on GitHub Pages via Git</h1>
+	<div class="entry-content" itemprop="articleBody">
+
+<p>After a long time of debating (read: procrastinating) about creating a blog, here it is. Its purpose is dual – first, document my adventures in Go (among other tools of the trade) as a way to reinforce concepts I am learning and implementing into projects. Secondly, it is a great platform to share my perspective on miscellaneous subjects, in which (I hope) can spark meaningful discussion from all viewpoints.</p>
+
+<p>As my first post, I’ve decided to pop open the hood of my brand new blog and explain its workings. My blog is powered by <a href="http://gohugo.io">Hugo</a>, the static site generator written by <a href="http://github.com/spf13/hugo">Steve Francia</a>. And since it is written in Go, you can pretty much be assured of its speed, with the ability to render pages in milliseconds. Since I am changing my current web host from S3 to GitHub Pages, my workflow has changed and this tutorial reflects this update (with the absence of the task manager I use, <a href="http://gruntjs.com">Grunt</a>, which I will detail in a future post). It is written so that anyone can understand (although the <a href="http://gohugo.io/overview/introduction">documentation</a> is clear and the <a href="http://discuss.gohugo.io">discussion</a> section is extensive and helpful) but I am assuming that you are comfortable with using the command line and have some familiarity with git, the open source version control system.</p>
+
+<h2 id="why-hugo:40925d0e59b257082b8fe9b8642289e9">Why Hugo?</h2>
+
+<p>I initially considered <a href="http://jekyllrb.com/">Jekyll</a>, but chose against it (speed). The ability to write my blog posts in markdown crossed off other options.
+With Hugo, organization is straightforward, with the paths of folders remaining the same as a url; for example, the file in content/holla/back/girl.md is rendered as &lt;site&gt;/holla/back/girl when live. And if that is not enough, Hugo comes with a webserver that automatically updates as you alter content on the site.</p>
+
+<h2 id="setting-it-up:40925d0e59b257082b8fe9b8642289e9">Setting it up</h2>
+
+<p>First you&rsquo;re going to need to install it. I will assume you are working from OSX. If you have <a href="http://www.brew.sh">Homebrew</a>, you can simply do <code>$ brew install hugo</code>.</p>
+
+<h4 id="workflow:40925d0e59b257082b8fe9b8642289e9">Workflow</h4>
+
+<ol>
+<li><p>Create a repo with your username followed by github.io. as so:<code>github_username.github.io</code>. This is the name of the repo and will be the url of your site.</p></li>
+
+<li><p>Now create a local instance of your repo under the same name and using the command line, cd to create a new site in this current directory: <code>$ hugo new site</code> or you can specify the path when creating the new site, like so: <code>$ hugo new site /path/to/folder</code>.</p></li>
+
+<li><p>You then will have to initialize the git repo with <code>$ git init</code> and add your remote
+<code>$ git remote add origin git@github.com:&lt;github_username&gt;/&lt;github_username&gt;.github.io.git</code>. Now we are ready for a new blog post.</p></li>
+
+<li><p>A new blog post is just as simple, <code>$ hugo new post/hello.md</code>. Make sure you set draft to false so that the post appears.</p></li>
+
+<li><p><code>$ hugo</code> command builds the site and you should have a complied public directory with your site.</p></li>
+
+<li><p>Now we must do an <code>$ echo 'public' &gt;&gt; .gitignore</code> so that Git may ignore your public directory.</p></li>
+
+<li><p><code>$ git checkout -b source</code> will switch you out of the master branch and create a new branch (source). As you might have surmised by now, we will use this branch to keep our source code for our site, while the master branch will hold the actual site (in the public directory).</p></li>
+
+<li><p>Add, commit and push! <code>$ git add -A</code> followed by <code>$ git commit -m 'Init Commit'</code>and <code>$ git push origin source</code>.</p></li>
+
+<li><p>Now we simply cd into the public folder. <code>$ git init</code> followed by add, commit and push (Push is done with <code>$ git push origin master</code>). Now when you direct your browser to github_username.github.io, you should see your site.</p></li>
+</ol>
+
+<h4 id="themes:40925d0e59b257082b8fe9b8642289e9">Themes!</h4>
+
+<p>Whatever theme you feel best matches your taste, you can clone and use. I am using <a href="https://github.com/cxfksword/greyshade">GreyShade</a>. <code>$ git clone https://github.com/cxfksword/greyshade.git theme/greyshade</code>. Here I placed the folder and name of the theme. To test it out, run the Hugo webserver <code>$ hugo server -w</code>. If all is well, tell Hugo to build the site by running <code>$ hugo</code>. Now you should have a compiled public directory with your theme.</p>
+
+<h4 id="last-thoughts:40925d0e59b257082b8fe9b8642289e9">Last Thoughts</h4>
+
+<p>Initially, customizing the theme was a bit tedious since I had to compile the Sass files before I could see the changes live on the browser. I recommend a task manager to automate these things, as mentioned earlier. Overall, once you understand the first few steps, you’ll be quite amazed of the simplicity and power of Hugo. The switch has certainly done good for my needs. * <em>Warning: minor rant approaching</em>. * In terms of enabling comments, the theme I am currently using is designed to use <a href="https://disqus.com/">Disqus</a> but I have chosen to do away with that completely. With governments worldwide violating our privacy in such obscene ways that threaten our human and civil rights, should we just accept the massive exploitation of our data and the rapid erosion of what little privacy we might have left as the new norm? Let’s hope not. Meanwhile, lets create awesome sites with Hugo and fight the good fight.</p>
+</div></article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size=''></a>
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					
+
+
+				    </div>
+				</div>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2015
+
+    Maria Rivas
+
+Powered by <a href="http://gohugo.io/">Hugo</a> | Design: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="http://mariarivas.me//js/slash.js"></script>
+<script src="http://mariarivas.me//js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script></footer>
+		</div>
+	</div>
+	
+</body>
+</html>
