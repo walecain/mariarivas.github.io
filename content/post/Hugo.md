@@ -1,5 +1,5 @@
 +++
-categories = ["Tutorials", "Golang", "GitHub Pages"]
+categories = ["Tutorials", "Golang", "GitHub Pages", "Git"]
 date = "2015-06-29T18:28:53+02:00"
 tags = ["Hugo", "GoLang", "Tutorials", "GitHub Pages"]
 title = "Hello HuGO - Create a Hugo Blog on GitHub Pages via Git"
@@ -7,7 +7,7 @@ draft = "false"
 
 +++
 
-After a long time of debating (read: procrastinating) about creating a blog, here it is. Its purpose is dual – first, document my adventures in Go (among other tools of the trade) as a way to reinforce concepts I am learning and implementing into projects. Secondly, it is a great platform to share my perspective on miscellaneous subjects, in which (I hope) can spark meaningful discussion from all viewpoints.
+After a long time of debating (read: procrastinating) about creating a blog, here it is. Its purpose is dual – first, document my adventures in Go & Swift (among other tools of the trade) as a way to reinforce concepts I am learning and implementing into projects. Secondly, it is a great platform to share my perspective on miscellaneous subjects, in which (I hope) can spark meaningful discussion from all viewpoints.
 
 As my first post, I’ve decided to pop open the hood of my brand new blog and explain its workings. My blog is powered by [Hugo](http://gohugo.io), the static site generator written by [Steve Francia](http://github.com/spf13/hugo). And since it is written in Go, you can pretty much be assured of its speed, with the ability to render pages in milliseconds. Since I am changing my current web host from S3 to GitHub Pages, my workflow has changed and this tutorial reflects this update (with the absence of the task manager I use, [Grunt](http://gruntjs.com), which I will detail in a future post). It is written so that anyone can understand (although the [documentation](http://gohugo.io/overview/introduction) is clear and the [discussion](http://discuss.gohugo.io) section is extensive and helpful) but I am assuming that you are comfortable with using the command line and have some familiarity with git, the open source version control system.
 
