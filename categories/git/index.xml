@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Tutorials on Maria Rivas </title>
+      <title>Git on Maria Rivas </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://mariarivas.me/categories/tutorials/</link>
+    <link>http://mariarivas.me/categories/git/</link>
     <language>en-us</language>
     <author>Maria Rivas</author>
     

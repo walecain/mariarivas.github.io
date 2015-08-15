@@ -7,7 +7,21 @@
     <language>en-us</language>
     <author>Maria Rivas</author>
     
-    <updated>Mon, 29 Jun 2015 18:28:53 CEST</updated>
+    <updated>Tue, 21 Jul 2015 20:22:59 CEST</updated>
+    
+    <item>
+      <title>Why Did the Programmer Cross the Road?</title>
+      <link>http://mariarivas.me/post/crossing/</link>
+      <pubDate>Tue, 21 Jul 2015 20:22:59 CEST</pubDate>
+      <author>Maria Rivas</author>
+      <guid>http://mariarivas.me/post/crossing/</guid>
+      <description>&lt;p&gt;One sweltering afternoon in May, as I walked towards one of the air conditioned libraries on campus with my Google backpack weighing about 7 kilos, drenched in sweat, (the sticky kind that threatens to suffocate every pore on the skin) I had one of those sudden &amp;ldquo;epiphanies&amp;rdquo; that allowed me to understand everything all at once. It is interesting too, since the situation was incredibly mundane&amp;hellip;but my mind always finds a way to extract meaning from what may appear to be nothing. Two students were walking in front of me together, as we approached a pedestrian crosswalk. As it normally is, the midday sun was merciless and unforgiving as we came to a complete stop. The pedestrian light was red, indicating that one should not cross, as vehicles have the right of way and may be approaching. I looked both directions&amp;hellip;The road ahead stood at a complete standstill. No coming vehicles from neither side for as far as the eye could see, and ears could hear. Yet, under the menacing death grip the sun had on us, they still chose to patiently wait until the light gave them permission to cross. I, as my usual, crossed the road. This incident, albeit it small, bothered me. One can argue that they were being cautious and law abiding and me&amp;hellip;a reckless, impatient jaywalker.&lt;/p&gt;
+
+&lt;p&gt;But no. What had bothered me was how powerfully obedient the people I am around are (not going to generalize or target a particular group&amp;hellip;just saying the ones I have encountered at my university). The fact that it was logical to go ahead and walk; and that this logic was bypassed for the sake of &amp;ldquo;following the rules&amp;rdquo; really worried me. I began to quickly think about other times where students abandoned reasoning and logic in exchange for following the rules of what you&amp;rsquo;re supposed to do and what you&amp;rsquo;re not. That was when I began to see a pattern. A pattern of highly trained individuals  who, for one reason or another, seemed to almost have a religious fixation with following commands without question or objection. In team projects, in organizations, in many different realms of my university life, I could easily come up with several examples where my peers retreated into the safe shell of &amp;ldquo;supposed-tos&amp;rdquo; instead of navigating the uncertain waters of drawing way outside the lines.&lt;/p&gt;
+
+&lt;p&gt;I could go on endlessly trying to explain why the educational system, or our institutions, filter for this prototype and how incredibly advantageous it is in our capitalistic society&amp;hellip;but I won&amp;rsquo;t. I will only say that in my mind, intellectual curiosity cannot coexist with this mentality. I am beginning to wonder how I could work a 9 to 5 job in a cubicle and follow orders&amp;hellip;just churning out work to help some CEO purchase a yacht with more footage. My peers can do this&amp;hellip;they are trained to follow the rules and remain in the labyrinth leading to 2.5 kids and 401Ks. I want to spiral out, I wish to touch the unknown and to understand this world, one byte at a time. To do this, you need to possess a different kind of thought, you need to sometimes disregard the rules when they violate logic. Don&amp;rsquo;t stop. Keep on walking, crossing. It&amp;rsquo;s worth it.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Hello HuGO - Create a Hugo Blog on GitHub Pages via Git</title>
@@ -17,7 +31,7 @@
       <guid>http://mariarivas.me/post/Hugo/</guid>
       <description>
 
-&lt;p&gt;After a long time of debating (read: procrastinating) about creating a blog, here it is. Its purpose is dual – first, document my adventures in Go (among other tools of the trade) as a way to reinforce concepts I am learning and implementing into projects. Secondly, it is a great platform to share my perspective on miscellaneous subjects, in which (I hope) can spark meaningful discussion from all viewpoints.&lt;/p&gt;
+&lt;p&gt;After a long time of debating (read: procrastinating) about creating a blog, here it is. Its purpose is dual – first, document my adventures in Go &amp;amp; Swift (among other tools of the trade) as a way to reinforce concepts I am learning and implementing into projects. Secondly, it is a great platform to share my perspective on miscellaneous subjects, in which (I hope) can spark meaningful discussion from all viewpoints.&lt;/p&gt;
 
 &lt;p&gt;As my first post, I’ve decided to pop open the hood of my brand new blog and explain its workings. My blog is powered by &lt;a href=&#34;http://gohugo.io&#34;&gt;Hugo&lt;/a&gt;, the static site generator written by &lt;a href=&#34;http://github.com/spf13/hugo&#34;&gt;Steve Francia&lt;/a&gt;. And since it is written in Go, you can pretty much be assured of its speed, with the ability to render pages in milliseconds. Since I am changing my current web host from S3 to GitHub Pages, my workflow has changed and this tutorial reflects this update (with the absence of the task manager I use, &lt;a href=&#34;http://gruntjs.com&#34;&gt;Grunt&lt;/a&gt;, which I will detail in a future post). It is written so that anyone can understand (although the &lt;a href=&#34;http://gohugo.io/overview/introduction&#34;&gt;documentation&lt;/a&gt; is clear and the &lt;a href=&#34;http://discuss.gohugo.io&#34;&gt;discussion&lt;/a&gt; section is extensive and helpful) but I am assuming that you are comfortable with using the command line and have some familiarity with git, the open source version control system.&lt;/p&gt;
 
