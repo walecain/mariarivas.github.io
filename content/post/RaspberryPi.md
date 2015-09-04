@@ -3,7 +3,7 @@ categories = ["Tutorials", "Raspberry Pi", "Tor"]
 date = "2015-08-01T23:25:55+02:00"
 tags = ["Tutorials", "Raspberry Pi", "Tor"]
 title = "Convert Raspberry Pi into Tor Relay (From the beginning!)"
-draft = "true"
+draft = "false"
 
 +++
 
