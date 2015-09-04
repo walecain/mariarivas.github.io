@@ -3,7 +3,7 @@
   <channel>
       <title>Raspberry Pi on Maria Rivas </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://mariarivas.me/categories/raspberry-pi/</link>
+    <link>http://localhost:1313/categories/raspberry-pi/</link>
     <language>en-us</language>
     <author>Maria Rivas</author>
     
@@ -11,10 +11,10 @@
     
     <item>
       <title>Convert Raspberry Pi into Tor Relay (From the beginning!)</title>
-      <link>http://mariarivas.me/post/RaspberryPi/</link>
+      <link>http://localhost:1313/post/RaspberryPi/</link>
       <pubDate>Sat, 01 Aug 2015 23:25:55 &#43;0200</pubDate>
       <author>Maria Rivas</author>
-      <guid>http://mariarivas.me/post/RaspberryPi/</guid>
+      <guid>http://localhost:1313/post/RaspberryPi/</guid>
       <description>
 
 &lt;p&gt;As an advocate for privacy, I am very enamored with the Tor Project, allowing users to retain their anonymity while using the Internet. And given that I have one of my Raspberry Pis lying around, I decided to help out the cause and convert my Pi into a Tor relay. My only complaint is with the speed of the Tor network, obviously because there are not enough volunteers donating their bandwidth, so this is my little way of helping out a great cause.&lt;/p&gt;

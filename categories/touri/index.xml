@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Touri on Maria Rivas </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://localhost:1313/categories/touri/</link>
+    <language>en-us</language>
+    <author>Maria Rivas</author>
+    
+    <updated>Sat, 01 Aug 2015 23:25:55 CEST</updated>
+    
+    <item>
+      <title>RaspberryPi</title>
+      <link>http://localhost:1313/post/RaspberryPi/</link>
+      <pubDate>Sat, 01 Aug 2015 23:25:55 CEST</pubDate>
+      <author>Maria Rivas</author>
+      <guid>http://localhost:1313/post/RaspberryPi/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
