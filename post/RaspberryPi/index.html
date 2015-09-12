@@ -1,0 +1,254 @@
+<!DOCTYPE HTML>
+
+<html lang="en-us">
+
+<head>
+	<meta charset="utf-8">
+	<title>Convert Raspberry Pi into Tor Relay *not an exit node* - Maria Rivas</title>
+	<meta name="author" content="map[name:Maria Rivas email:mariarivas@me.com]">
+
+	
+	
+	<meta name="description" content="">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link rel="canonical" href="http://mariarivas.me/post/RaspberryPi/">
+	<link href="http://mariarivas.me//favicon.png" rel="shortcut icon">
+	<link href="http://mariarivas.me//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://mariarivas.me//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Muli:300' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Enriqueta' rel='stylesheet' type='text/css'>
+  
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-65312649-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	
+	<script src="http://mariarivas.me//js/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5('mariarivas@me.com') + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+	
+	
+</div>
+<h1>Maria Rivas</h1>
+<div class="subtitle">
+Software Engineer <b><big>|</big></b> NYC
+<br><br>
+I am simply doing what I love so I may never have to work a day in my life. That's all there is to it. 
+</div>
+<nav id="main-nav"><ul class="main">
+    <li><a href="/">Blog</a></li>
+    <li><a href="/post/">Archives</a></li>
+    <li><a href="/resume/maria_resume.pdf">Resume</a></li>
+</ul>
+
+<section class="aboutme">
+  <p>
+    
+  </p>
+</section>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+			<a class="email" href='mailto:mariarivas@me.com' title="Email">Email</a>
+		
+		
+		
+		
+			<a class="twitter" href='http://twitter.com/iammariarivas' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/mariarivas' title="GitHub">GitHub</a>
+		
+		
+		
+		
+			<a class="linkedin" href='http://www.linkedin.com/in/rivasmaria1' title="LinkedIn">LinkedIn</a>
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+	</div>
+</nav>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="title" itemprop="name">Convert Raspberry Pi into Tor Relay *not an exit node*</h1>
+	<div class="entry-content" itemprop="articleBody">
+
+<p><center><img src="/images/raspberry_pi.png" alt="RaspberryPi" />
+</center></p>
+
+<p>As an advocate for privacy, I am very enamored with the Tor Project, allowing users to retain their anonymity while using the Internet. And given that I have one of my Raspberry Pis lying around, I decided to help out the cause and convert my Pi into a Tor relay. My only complaint is with the speed of the Tor network, obviously because there are not enough volunteers donating their bandwidth, so this is my little way of helping out a great cause.</p>
+
+<h2 id="what-is-tor:301d571ef21dd17e19e7459911664500">What is Tor?</h2>
+
+<p><center><img src="/images/tor-logo.png" alt="Tor Logo" />
+</center></p>
+
+<p>Tor (an acronym for the original project called The Onion Router) is a free software that enables a second-generation onion routing system that allows for anonymous communications over a computer network. In an onion network, data sent through a network are enclosed in layers of encryption. These data are then transmitted to nodes (AKA onion routers) which strips a single layer of encryption at each stop, displaying where the data&rsquo;s next destination is. When the data has reached the target address, the last layer is stripped and decrypted. Each of the nodes involved in between never know the sender; rendering the sender anonymous. The only information available is the next destination of the data between the nodes.</p>
+
+<p>Unlike what the media and other laypersons may falsely claim, Tor is not used exclusively for &ldquo;dark web&rdquo; activities but as an essential tool for defense against the mass surveillance apparatus that threatens our personal freedom and privacy.</p>
+
+<h4 id="precautions-for-exit-nodes:301d571ef21dd17e19e7459911664500">Precautions for Exit Nodes</h4>
+
+<p>This tutorial is for a middle relay, the ones that transport data from the guard relay to the exit (the default factory settings for Tor goes through 3 relays). Running an exit node requires a bit more responsibility. These special nodes direct data straight to the target location of the sender, and so any illegal activities that come from the sender will show as if the exit relay was responsible for it, leaving the owner of this server with the possibility of being targeted by local authorities (in an extreme circumstance). If you would like to be adventurous and a true blessed soul, read up on Tor&rsquo;s site a <a href="https://blog.torproject.org/blog/tips-running-exit-node-minimal-harassment">guide</a> for running an exit node with minimal harassment.</p>
+
+<h2 id="setting-up-the-marvelous-pi:301d571ef21dd17e19e7459911664500">Setting up the Marvelous Pi</h2>
+
+<p>Being that I forgot my beloved HDMI cable on a trip during the summer, I have been forced to resort to creative means to connect to my Pi. I am using my TTL-serial cable to connect to the pi. For sake of simplicity, I will not mention how to do this as it is rather lengthy and it requires a tutorial for itself. <a href="http://workshop.raspberrypiaustralia.com/usb/ttl/connecting/2014/08/31/01-connecting-to-raspberry-pi-via-usb/">Here</a> is a good explanation of it if that is your only means of connecting to your pi. So once the shell is brought up with the login prompt, we are ready to roll.</p>
+
+<p><em>Note: my Pi&rsquo;s OS is Raspbian.</em></p>
+
+<p><em>Irrelevant Note: Kali Linux has an ARM version wooohoo! Going to make the switch and have some real fun!</em></p>
+
+<h4 id="instructions:301d571ef21dd17e19e7459911664500">Instructions</h4>
+
+<p>Let&rsquo;s install Tor first, no?
+<code>apt-get install tor</code></p>
+
+<p>After it has been downloaded, you should cd into the torrc txt file to configure how your Tor will behave. If you compiled from src code then it will be located <code>/usr/local/etc/tor/torrc</code> and if you did not it should be at <code>/etc/tor/torrc or /etc/torrc</code>.</p>
+
+<p>Uncomment and complete these lines in the section just for servers</p>
+
+<pre><code>#Nickname &quot;a unique handle for this server&quot;
+#ContactInfo &quot;&lt;nobody@example.com&gt;&quot;
+#ORPort 443
+#ExitPolicy reject *:*
+</code></pre>
+
+<p>If you do not set any limits on bandwidth, it will be all taken hostage.</p>
+
+<pre><code>RelayBandwidthRate 300 KB
+RelayBandwidthBurst 500 KB 
+</code></pre>
+
+<p>I use the anonymizing relay monitor (arm) tool to manage my Tor relay. Basically it&rsquo;s a terminal status monitor for Tor that provides live stats RE: bandwidth, CPU and memory usage along with connection details and configuration settings for your relay. Uncomment these lines and after I show a quick note on installing arm.</p>
+
+<pre><code>#ControlPort 9051
+#CookieAuthentication 1
+</code></pre>
+
+<p><em>Side Note: Installing arm; preferably to be done after the remaining steps are complete</em></p>
+
+<hr />
+
+<pre><code>apt-get install tor-arm
+
+#And then run it *after* you have finished the entire tutorial. 
+sudo -u debian-tor arm
+</code></pre>
+
+<hr />
+
+<p>Then we start up Tor.</p>
+
+<pre><code>/etc/init./tor start
+</code></pre>
+
+<p>Now we access all the currently active socket connections on the system via the wonderful netstat command coupled with grep.</p>
+
+<pre><code>netstat -atnp | grep 443 
+</code></pre>
+
+<p>Check the Tor status and make sure that somewhere in there it states that the ORPort is reachable.</p>
+
+<pre><code>tail /var/log/tor/log
+</code></pre>
+
+<p>So now you may check in <a href="https://atlas.torproject.org/">Atlas</a> for the name you gave your server way back when we first configured. If it is there, then congrats, your relay is working!! But if not, just be aware that it takes a bit of time for the directories to be updated with brand spanking new server info.</p>
+
+<h4 id="references-links:301d571ef21dd17e19e7459911664500">References &amp; Links:</h4>
+
+<ul>
+<li><a href="https://www.torproject.org/">Tor</a></li>
+<li><a href="https://www.atagar.com/index.php">Arm Tool</a></li>
+<li><a href="http://www.binarytides.com/linux-netstat-command-examples/">Netstat commands</a></li>
+<li><a href="http://www.devconsole.info/?p=879">DevConsole</a></li>
+<li><a href="http://jordan-wright.com/blog/2015/02/28/how-tor-works-part-one/">How Tor Works</a></li>
+</ul>
+</div></article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size=''></a>
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					
+
+
+				    </div>
+				</div>
+			</div>
+			<footer id="footer" class="inner">
+    Maria Rivas 2015
+
+<br>Powered by <a href="http://gohugo.io/">Hugo</a> | Design: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="http://mariarivas.me//js/slash.js"></script>
+<script src="http://mariarivas.me//js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script></footer>
+		</div>
+	</div>
+	
+</body>
+</html>

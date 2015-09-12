@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Raspberry Pi on Maria Rivas </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://mariarivas.me/categories/raspberry-pi/</link>
+    <language>en-us</language>
+    <author>Maria Rivas</author>
+    
+    <updated>Sat, 01 Aug 2015 23:25:55 &#43;0200</updated>
+    
+    <item>
+      <title>Convert Raspberry Pi into Tor Relay *not an exit node*</title>
+      <link>http://mariarivas.me/post/RaspberryPi/</link>
+      <pubDate>Sat, 01 Aug 2015 23:25:55 &#43;0200</pubDate>
+      <author>Maria Rivas</author>
+      <guid>http://mariarivas.me/post/RaspberryPi/</guid>
+      <description>
+
+&lt;p&gt;&lt;center&gt;&lt;img src=&#34;http://mariarivas.me/images/raspberry_pi.png&#34; alt=&#34;RaspberryPi&#34; /&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;As an advocate for privacy, I am very enamored with the Tor Project, allowing users to retain their anonymity while using the Internet. And given that I have one of my Raspberry Pis lying around, I decided to help out the cause and convert my Pi into a Tor relay. My only complaint is with the speed of the Tor network, obviously because there are not enough volunteers donating their bandwidth, so this is my little way of helping out a great cause.&lt;/p&gt;
+
+&lt;h2 id=&#34;what-is-tor:301d571ef21dd17e19e7459911664500&#34;&gt;What is Tor?&lt;/h2&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;img src=&#34;http://mariarivas.me/images/tor-logo.png&#34; alt=&#34;Tor Logo&#34; /&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Tor (an acronym for the original project called The Onion Router) is a free software that enables a second-generation onion routing system that allows for anonymous communications over a computer network. In an onion network, data sent through a network are enclosed in layers of encryption. These data are then transmitted to nodes (AKA onion routers) which strips a single layer of encryption at each stop, displaying where the data&amp;rsquo;s next destination is. When the data has reached the target address, the last layer is stripped and decrypted. Each of the nodes involved in between never know the sender; rendering the sender anonymous. The only information available is the next destination of the data between the nodes.&lt;/p&gt;
+
+&lt;p&gt;Unlike what the media and other laypersons may falsely claim, Tor is not used exclusively for &amp;ldquo;dark web&amp;rdquo; activities but as an essential tool for defense against the mass surveillance apparatus that threatens our personal freedom and privacy.&lt;/p&gt;
+
+&lt;h4 id=&#34;precautions-for-exit-nodes:301d571ef21dd17e19e7459911664500&#34;&gt;Precautions for Exit Nodes&lt;/h4&gt;
+
+&lt;p&gt;This tutorial is for a middle relay, the ones that transport data from the guard relay to the exit (the default factory settings for Tor goes through 3 relays). Running an exit node requires a bit more responsibility. These special nodes direct data straight to the target location of the sender, and so any illegal activities that come from the sender will show as if the exit relay was responsible for it, leaving the owner of this server with the possibility of being targeted by local authorities (in an extreme circumstance). If you would like to be adventurous and a true blessed soul, read up on Tor&amp;rsquo;s site a &lt;a href=&#34;https://blog.torproject.org/blog/tips-running-exit-node-minimal-harassment&#34;&gt;guide&lt;/a&gt; for running an exit node with minimal harassment.&lt;/p&gt;
+
+&lt;h2 id=&#34;setting-up-the-marvelous-pi:301d571ef21dd17e19e7459911664500&#34;&gt;Setting up the Marvelous Pi&lt;/h2&gt;
+
+&lt;p&gt;Being that I forgot my beloved HDMI cable on a trip during the summer, I have been forced to resort to creative means to connect to my Pi. I am using my TTL-serial cable to connect to the pi. For sake of simplicity, I will not mention how to do this as it is rather lengthy and it requires a tutorial for itself. &lt;a href=&#34;http://workshop.raspberrypiaustralia.com/usb/ttl/connecting/2014/08/31/01-connecting-to-raspberry-pi-via-usb/&#34;&gt;Here&lt;/a&gt; is a good explanation of it if that is your only means of connecting to your pi. So once the shell is brought up with the login prompt, we are ready to roll.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Note: my Pi&amp;rsquo;s OS is Raspbian.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Irrelevant Note: Kali Linux has an ARM version wooohoo! Going to make the switch and have some real fun!&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;instructions:301d571ef21dd17e19e7459911664500&#34;&gt;Instructions&lt;/h4&gt;
+
+&lt;p&gt;Let&amp;rsquo;s install Tor first, no?
+&lt;code&gt;apt-get install tor&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;After it has been downloaded, you should cd into the torrc txt file to configure how your Tor will behave. If you compiled from src code then it will be located &lt;code&gt;/usr/local/etc/tor/torrc&lt;/code&gt; and if you did not it should be at &lt;code&gt;/etc/tor/torrc or /etc/torrc&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Uncomment and complete these lines in the section just for servers&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#Nickname &amp;quot;a unique handle for this server&amp;quot;
+#ContactInfo &amp;quot;&amp;lt;nobody@example.com&amp;gt;&amp;quot;
+#ORPort 443
+#ExitPolicy reject *:*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you do not set any limits on bandwidth, it will be all taken hostage.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;RelayBandwidthRate 300 KB
+RelayBandwidthBurst 500 KB 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I use the anonymizing relay monitor (arm) tool to manage my Tor relay. Basically it&amp;rsquo;s a terminal status monitor for Tor that provides live stats RE: bandwidth, CPU and memory usage along with connection details and configuration settings for your relay. Uncomment these lines and after I show a quick note on installing arm.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#ControlPort 9051
+#CookieAuthentication 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Side Note: Installing arm; preferably to be done after the remaining steps are complete&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code&gt;apt-get install tor-arm
+
+#And then run it *after* you have finished the entire tutorial. 
+sudo -u debian-tor arm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Then we start up Tor.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/etc/init./tor start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we access all the currently active socket connections on the system via the wonderful netstat command coupled with grep.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;netstat -atnp | grep 443 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check the Tor status and make sure that somewhere in there it states that the ORPort is reachable.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;tail /var/log/tor/log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So now you may check in &lt;a href=&#34;https://atlas.torproject.org/&#34;&gt;Atlas&lt;/a&gt; for the name you gave your server way back when we first configured. If it is there, then congrats, your relay is working!! But if not, just be aware that it takes a bit of time for the directories to be updated with brand spanking new server info.&lt;/p&gt;
+
+&lt;h4 id=&#34;references-links:301d571ef21dd17e19e7459911664500&#34;&gt;References &amp;amp; Links:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.torproject.org/&#34;&gt;Tor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.atagar.com/index.php&#34;&gt;Arm Tool&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.binarytides.com/linux-netstat-command-examples/&#34;&gt;Netstat commands&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.devconsole.info/?p=879&#34;&gt;DevConsole&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jordan-wright.com/blog/2015/02/28/how-tor-works-part-one/&#34;&gt;How Tor Works&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

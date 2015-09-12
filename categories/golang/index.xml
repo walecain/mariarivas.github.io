@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Golang on Maria Rivas </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://mariarivas.me/categories/golang/</link>
+    <language>en-us</language>
+    <author>Maria Rivas</author>
+    
+    <updated>Mon, 29 Jun 2015 18:28:53 &#43;0200</updated>
+    
+    <item>
+      <title>Hello HuGO - Create a Hugo Blog on GitHub Pages via Git</title>
+      <link>http://mariarivas.me/post/Hugo/</link>
+      <pubDate>Mon, 29 Jun 2015 18:28:53 &#43;0200</pubDate>
+      <author>Maria Rivas</author>
+      <guid>http://mariarivas.me/post/Hugo/</guid>
+      <description>
+
+&lt;p&gt;After a long time of debating (read: procrastinating) about creating a blog, here it is. Its purpose is dual – first, document my adventures in Go &amp;amp; Swift (among other tools of the trade) as a way to reinforce concepts I am learning and implementing into projects. Secondly, it is a great platform to share my perspective on miscellaneous subjects, in which (I hope) can spark meaningful discussion from all viewpoints.&lt;/p&gt;
+
+&lt;p&gt;As my first post, I’ve decided to pop open the hood of my brand new blog and explain its workings. My blog is powered by &lt;a href=&#34;http://gohugo.io&#34;&gt;Hugo&lt;/a&gt;, the static site generator written by &lt;a href=&#34;http://github.com/spf13/hugo&#34;&gt;Steve Francia&lt;/a&gt;. And since it is written in Go, you can pretty much be assured of its speed, with the ability to render pages in milliseconds. Since I am changing my current web host from S3 to GitHub Pages, my workflow has changed and this tutorial reflects this update (with the absence of the task manager I use, &lt;a href=&#34;http://gruntjs.com&#34;&gt;Grunt&lt;/a&gt;, which I will detail in a future post). It is written so that anyone can understand (although the &lt;a href=&#34;http://gohugo.io/overview/introduction&#34;&gt;documentation&lt;/a&gt; is clear and the &lt;a href=&#34;http://discuss.gohugo.io&#34;&gt;discussion&lt;/a&gt; section is extensive and helpful) but I am assuming that you are comfortable with using the command line and have some familiarity with git, the open source version control system.&lt;/p&gt;
+
+&lt;h2 id=&#34;why-hugo:40925d0e59b257082b8fe9b8642289e9&#34;&gt;Why Hugo?&lt;/h2&gt;
+
+&lt;p&gt;I initially considered &lt;a href=&#34;http://jekyllrb.com/&#34;&gt;Jekyll&lt;/a&gt;, but chose against it (speed). The ability to write my blog posts in markdown crossed off other options.
+With Hugo, organization is straightforward, with the paths of folders remaining the same as a url; for example, the file in content/holla/back/girl.md is rendered as &amp;lt;site&amp;gt;/holla/back/girl when live. And if that is not enough, Hugo comes with a webserver that automatically updates as you alter content on the site.&lt;/p&gt;
+
+&lt;h2 id=&#34;setting-it-up:40925d0e59b257082b8fe9b8642289e9&#34;&gt;Setting it up&lt;/h2&gt;
+
+&lt;p&gt;First you&amp;rsquo;re going to need to install it. I will assume you are working from OSX. If you have &lt;a href=&#34;http://www.brew.sh&#34;&gt;Homebrew&lt;/a&gt;, you can simply do &lt;code&gt;$ brew install hugo&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;workflow:40925d0e59b257082b8fe9b8642289e9&#34;&gt;Workflow&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Create a repo with your username followed by github.io. as so:&lt;code&gt;github_username.github.io&lt;/code&gt;. This is the name of the repo and will be the url of your site.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Now create a local instance of your repo under the same name and using the command line, cd to create a new site in this current directory: &lt;code&gt;$ hugo new site&lt;/code&gt; or you can specify the path when creating the new site, like so: &lt;code&gt;$ hugo new site /path/to/folder&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;You then will have to initialize the git repo with &lt;code&gt;$ git init&lt;/code&gt; and add your remote
+&lt;code&gt;$ git remote add origin git@github.com:&amp;lt;github_username&amp;gt;/&amp;lt;github_username&amp;gt;.github.io.git&lt;/code&gt;. Now we are ready for a new blog post.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;A new blog post is just as simple, &lt;code&gt;$ hugo new post/hello.md&lt;/code&gt;. Make sure you set draft to false so that the post appears.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;$ hugo&lt;/code&gt; command builds the site and you should have a complied public directory with your site.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Now we must do an &lt;code&gt;$ echo &#39;public&#39; &amp;gt;&amp;gt; .gitignore&lt;/code&gt; so that Git may ignore your public directory.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;$ git checkout -b source&lt;/code&gt; will switch you out of the master branch and create a new branch (source). As you might have surmised by now, we will use this branch to keep our source code for our site, while the master branch will hold the actual site (in the public directory).&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Add, commit and push! &lt;code&gt;$ git add -A&lt;/code&gt; followed by &lt;code&gt;$ git commit -m &#39;Init Commit&#39;&lt;/code&gt;and &lt;code&gt;$ git push origin source&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Now we simply cd into the public folder. &lt;code&gt;$ git init&lt;/code&gt; followed by add, commit and push (Push is done with &lt;code&gt;$ git push origin master&lt;/code&gt;). Now when you direct your browser to github_username.github.io, you should see your site.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;themes:40925d0e59b257082b8fe9b8642289e9&#34;&gt;Themes!&lt;/h4&gt;
+
+&lt;p&gt;Whatever theme you feel best matches your taste, you can clone and use. I am using &lt;a href=&#34;https://github.com/cxfksword/greyshade&#34;&gt;GreyShade&lt;/a&gt;. &lt;code&gt;$ git clone https://github.com/cxfksword/greyshade.git theme/greyshade&lt;/code&gt;. Here I placed the folder and name of the theme. To test it out, run the Hugo webserver &lt;code&gt;$ hugo server -w&lt;/code&gt;. If all is well, tell Hugo to build the site by running &lt;code&gt;$ hugo&lt;/code&gt;. Now you should have a compiled public directory with your theme.&lt;/p&gt;
+
+&lt;h4 id=&#34;last-thoughts:40925d0e59b257082b8fe9b8642289e9&#34;&gt;Last Thoughts&lt;/h4&gt;
+
+&lt;p&gt;Initially, customizing the theme was a bit tedious since I had to compile the Sass files before I could see the changes live on the browser. I recommend a task manager to automate these things, as mentioned earlier. Overall, once you understand the first few steps, you’ll be quite amazed of the simplicity and power of Hugo. The switch has certainly done good for my needs. * &lt;em&gt;Warning: minor rant approaching&lt;/em&gt;. * In terms of enabling comments, the theme I am currently using is designed to use &lt;a href=&#34;https://disqus.com/&#34;&gt;Disqus&lt;/a&gt; but I have chosen to do away with that completely. With governments worldwide violating our privacy in such obscene ways that threaten our human and civil rights, should we just accept the massive exploitation of our data and the rapid erosion of what little privacy we might have left as the new norm? Let’s hope not. Meanwhile, lets create awesome sites with Hugo and fight the good fight.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
